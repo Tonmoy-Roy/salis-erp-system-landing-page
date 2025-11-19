@@ -1,0 +1,83 @@
+"use client";
+import Image from 'next/image';
+import React from 'react';
+import modules from '@/app/Constants/modules';
+import { FaArrowRightLong } from "react-icons/fa6";
+import { motion } from "framer-motion";
+
+const FourthSection = () => {
+    return (
+        <div className="max-w-6xl mx-auto px-6 mb-20">
+            <div className="text-center mb-16">
+                <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4 fade-in">
+                    Comprehensive ERP Modules
+                </h2>
+                <p className="text-lg text-slate-600">
+                    Integrated functionality to manage every facet of your organization
+                </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {modules.map((module, index) => (
+                    <div
+                        key={index}
+                        className="bg-white rounded-2xl shadow-md p-8  flex flex-col text-center group"
+                    >
+                        <div className="flex justify-center mb-6">
+                            <motion.div
+                                className="w-10 h-10 bg-gradient-to-br rounded-full flex items-center justify-center"
+                                animate={{
+                                    y: ["0%", "-10%", "0%", "10%", "0%"],
+                                    x: ["-10%", "0%", "-10%", "0%", "-10%"],
+                                    rotate: [0, 0, 0, 0, 0],
+                                }}
+                                transition={{
+                                    duration: 2,
+                                    repeat: Infinity,
+                                    ease: "easeInOut",
+                                }}
+                            >
+                                <Image src={module.icon} alt="" className="" />
+                            </motion.div>
+                        </div>
+                        <div className="transition-transform duration-500 ease-out group-hover:-translate-y-[2px]">
+                            <h3 className="text-xl font-bold text-slate-800 mb-3 text-center relative inline-block mx-auto">
+                                {module.title}
+                                <span className="absolute left-0 -bottom-1 w-0 h-[1.5px] bg-orange-500 transition-all duration-700 group-hover:w-full rounded-full"></span>
+                            </h3>
+                            <p className="text-slate-600 leading-relaxed text-center mb-6 md:w-[17.5vw] mx-auto">
+                                {module.description}
+                            </p>
+                        </div>
+                        <div className="text-center">
+                            <button className="group inline-flex items-center gap-1 font-semibold hover:text-orange-600 transition-colors relative overflow-hidden">
+                                READ MORE
+
+                                <svg
+                                    className="w-4 h-4 absolute right-0 transition-all duration-500 group-hover:translate-x-3 group-hover:opacity-0"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M9 5l7 7-7 7"
+                                    />
+                                </svg>
+
+                                <span className="w-5 h-4 right-0 opacity-0 transition-all duration-500 group-hover:opacity-100 group-hover:translate-x-0 -translate-x-3 flex items-center">
+                                    <FaArrowRightLong />
+                                </span>
+                            </button>
+
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+};
+
+export default FourthSection;
